@@ -9,7 +9,6 @@ const cacheSchema = new Schema({
     },
     fromLanguage:{
         type: String,
-        required: true,
     },
     toLanguage:{
         type:String,

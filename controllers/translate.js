@@ -1,35 +1,30 @@
-const translate = require('@vitalets/google-translate-api');
+
 const Cache = require('../models/cache');
-
-
+const error = require('../utils/errorHandler');
+const googleApi = require('../services/googleApi')
 
 exports.postTranslate = async (req,res,next)=>{
     try{
     const text = req.body.text // user entered text
-    const enteredLanguage = req.body.enteredLanguage // user entered country
-    const requestedLanguage = req.body.requestedLanguage// user selected country 
+    const requestedLanguage = req.body.requestedLanguage// user selected country
 
+    // Api Call 
+    const result = await googleApi(text,requestedLanguage);
 
-    const result = await translate(text,{from:enteredLanguage ,to: requestedLanguage})
     if(!result){
-       const error = new Error('Something went wrong please try again'); // if anything get wrong in api call 
-        error.statusCode= 500;
-        throw error;
+       error('Something went wrong please try again',500) // if anything   get wrong in api call 
     }
 
     // saving data into cache 
     const cache = new Cache({
         text:text,
-        fromLanguage:enteredLanguage,
         toLanguage: requestedLanguage,
         convertedText: result.text,
     })
 
     const savedCache = await cache.save();
     if(!savedCache){
-        const error = new Error('Something went wrong please try again'); // if anything get wrong in db connection 
-        error.statusCode= 500;
-        throw error;
+        error('Something went wrong please try again',500) // if anything get wrong in db connection 
     }
 
     // translated text
