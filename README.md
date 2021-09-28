@@ -19,8 +19,13 @@ translation service.
 
 1. Mongoose
 2. vaildator
-3. @vitalets/google-translate-api (For translation)
+
+## service
+ @vitalets/google-translate-api (For translation) 
 
 
 ## DB
 1. MongooDB
+
+## API documentation
+https://documenter.getpostman.com/view/16713451/UUxzC8i6
