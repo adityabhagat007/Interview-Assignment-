@@ -18,6 +18,7 @@ exports.postTranslate = async (req,res,next)=>{
     // saving data into cache 
     const cache = new Cache({
         text:text,
+        fromLanguage:result.from.language.iso,
         toLanguage: requestedLanguage,
         convertedText: result.text,
     })
