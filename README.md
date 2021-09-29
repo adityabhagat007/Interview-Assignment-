@@ -29,3 +29,8 @@ translation service.
 
 ## API documentation
 https://documenter.getpostman.com/view/16713451/UUxzC8i6
+
+## Setup Process
+1. npm install 
+2. npm start 
+
