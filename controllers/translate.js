@@ -10,7 +10,6 @@ exports.postTranslate = async (req,res,next)=>{
 
     // Api Call 
     const result = await googleApi(text,requestedLanguage);
-
     if(!result){
        error('Something went wrong please try again',500) // if anything   get wrong in api call 
     }
